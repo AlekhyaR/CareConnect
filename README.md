@@ -6,6 +6,7 @@ It comes packaged with the following models:
 * Inbox
 * Outbox
 * Payment
+  
 When a user sends a message, it goes into their outbox and into the inbox of the recipient.
 
 ### Get up & running
