@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1><%= t('user.mailer.reissue_successful') %></h1>
+    <p><%= t('user.mailer.admin.attempt_successful') %></p>
+    <p><%= t('user.prescription.id') %>: <%= @prescription.id %></p>
+    <p><%= t('user.prescription.patient_title') %>: <%= @prescription.patient.full_name %></p>
+    <p><%= t('user.prescription.doctor_title') %>: <%= @prescription.doctor.full_name %></p>
+  </body>
+</html>

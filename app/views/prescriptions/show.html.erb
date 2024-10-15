@@ -1,0 +1,11 @@
+<h1><%= t('user.prescription.show')%></h1>
+
+<p><%= @prescription.patient.full_name %></p>
+
+<p><%= @prescription.doctor.full_name %></p>
+
+<p><%= @prescription.medication %></p>
+
+<p><%= @prescription.dosage %></p>
+
+<%= link_to t('messages.show.back'), patient_dashboard_path(patient_id: @prescription.patient.id) %>

@@ -1,0 +1,14 @@
+<h1 class="mb-4"><%= t('application.title') %></h1>
+
+<div class="mb-3">
+  <%= link_to t('messages.index.new'), new_message_path %><br/>
+  <% if User.default_doctor %>
+    <%= link_to t('messages.index.doctor_inbox'), inbox_path(id: User.default_doctor) %><br/>
+  <% end %>
+  <% if User.current %>
+    <%= link_to t('messages.index.patient_dashboard'), patient_dashboard_path(patient_id: User.current) %><br/>
+  <% end %>
+  <% if User.default_admin %>
+    <%= link_to t('messages.index.admin_inbox'), inbox_path(id: User.default_admin) %><br/>
+  <% end %>
+</div>

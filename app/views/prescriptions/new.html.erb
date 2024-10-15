@@ -1,0 +1,55 @@
+<h1><%= t('user.prescription.new') %></h1>
+
+<%= form_with(model: @prescription, url: prescriptions_path, method: :post, local: true) do |form| %>
+  <!-- Doctor Selection -->
+  <div class="form-group">
+    <%= form.label :doctor_id, t('user.role.doctor') %>
+    <%= form.select :doctor_id, options_for_select(@doctors.map { |user| [user.sender_name, user.id] }, @prescription.doctor_id), { prompt: 'Select Doctor' }, class: 'form-control' %>
+  </div>
+
+  <!-- Patient Selection -->
+  <div class="form-group">
+    <%= form.label :patient_id, t('user.role.patient') %>
+    <%= form.select :patient_id, options_for_select(@patients.map { |user| [user.recipient_name, user.id] }, @prescription.patient_id), { prompt: 'Select Patient' }, class: 'form-control' %>
+  </div>
+
+  <!-- Dosage -->
+  <div class="form-group">
+    <%= form.label :dosage, t('user.prescription.dosage') %>
+    <%= form.text_area :dosage, class: "form-control", rows: 3, placeholder: t('messages.new.placeholder'), maxlength: 500 %>
+    <small class="form-text text-muted">
+      <%= t('messages.new.max_allowed_chars') %>
+    </small>
+  </div>
+
+  <!-- Medication -->
+  <div class="form-group">
+    <%= form.label :medication, t('user.prescription.medication') %>
+    <%= form.text_area :medication, class: "form-control", rows: 5, placeholder: t('messages.new.placeholder'), maxlength: 500 %>
+    <small class="form-text text-muted">
+      <%= t('messages.new.max_allowed_chars') %>
+    </small>
+  </div>
+
+  <!-- Valid Until -->
+  <div class="form-group">
+    <%= form.label :valid_until, t('user.prescription.valid_until') %>
+    <%= form.date_field :valid_until, class: 'form-control' %> <!-- Corrected to use `date_field` for date input -->
+  </div>
+
+  <!-- Notes -->
+  <div class="form-group">
+    <%= form.label :notes, t('user.prescription.notes') %>
+    <%= form.text_area :notes, class: "form-control", rows: 5, placeholder: 'Enter Notes, if any', maxlength: 500 %>
+    <small class="form-text text-muted">
+      <%= t('messages.new.max_allowed_chars') %>
+    </small>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <%= form.submit t('user.prescription.create'), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to t('messages.new.back'), root_path, class: "btn btn-secondary mt-3" %>

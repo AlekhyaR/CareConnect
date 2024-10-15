@@ -1,0 +1,34 @@
+<div class="mb-3">
+  <% if User.default_doctor %>
+    <%= link_to "Doctor Inbox", inbox_path(id: User.default_doctor), class: 'btn btn-info' %>
+  <% end %>
+</div>
+<h2><%= t('user.prescription.show')%></h2>
+<% if @prescriptions.empty? %>
+  <%= t('messages.no_records') %>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t('user.role.patient') %></th>
+        <th><%= t('user.prescription.medication') %></th>
+        <th><%= t('user.prescription.dosage') %></th>
+        <th><%= t('user.prescription.issued_at') %></th>
+        <th><%= t('user.prescription.valid_until') %></th>
+        <th><%= t('user.prescription.notes') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @prescriptions.each do |prescription| %>
+        <tr>
+          <td><%= prescription.patient.full_name %></td>
+          <td><%= prescription.medication %></td>
+          <td><%= prescription.dosage %></td>
+          <td><%= prescription.issued_at&.strftime("%B %d, %Y") %></td>
+          <td><%= prescription.valid_until&.strftime("%B %d, %Y") %></td>
+          <td><%= prescription.notes %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

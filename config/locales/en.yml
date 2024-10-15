@@ -1,0 +1,97 @@
+en:
+  application:
+    title: Welcome
+  common:
+    back: Back
+  messages:
+    read_yes: "Yes"
+    read_no: "No"
+    inbox_unread_count: "You have %{count} unread messages"
+    no_records: No records to display
+    index:
+      title: Dashboard
+      view: View
+      new: New Message
+      doctor_inbox: Doctor Inbox
+      admin_inbox: Admin Inbox
+      patient_inbox: Patient Inbox
+      patient_dashboard: Patient Dashboard
+      from: From
+      to: To
+      body: Body
+      sent_at: Sent At
+      read: Read
+      actions: Actions
+      message:
+        time_distance: "%{time_ago} ago"
+    new:
+      title: Send a New Message
+      body: Message Body
+      placeholder: Enter your message here...
+      max_allowed_chars: Maximum 500 characters
+      send: Send Message
+      back: Back to Inbox
+    show:
+      back: back
+      title: Message
+    re-issue:
+      admin: Please re-issue my prescription note
+    show:
+      reply: Reply
+      lost_prescription: I've lost my prescription
+      request_new: Request New
+    create:
+      success_notice: Message sent successfully!
+      error_notice: "Error sending message: %{message}"
+  user:
+    role:
+      doctor: Doctor
+      admin: Admin
+      patient: Patient
+      sender: Sender
+      receiver: Recipient
+    patient:
+      reissue_request_sent: Request Sent
+      lost_script:
+        dashboard_prescription_status: Your request to re-issue a prescription has been submitted. You will be notified once the process is completed.
+      prescription:
+        reissue: I've lost my prescription, Please re-issue
+        confirm_reissue: "This will cost €10. Are you sure?"
+    mailer:
+      reissue_request_failed: Prescription Reissue Request Failed
+      reissue_successful: Prescription Reissue Successful
+      admin:
+        attempt_failed: An attempt to reissue a prescription has failed.
+        attempt_successful: An attempt to reissue a prescription has succeeded.
+      patient:
+        title: Prescription Reissue Successful
+        dear: Dear
+        success_message: Your prescription has been successfully reissued. You can pick it up at your convenience.
+        thank_you: Thank you!
+        failure_title: Prescription Reissue Request Failed
+        failure_message: Unfortunately, there was an issue with reissuing your prescription. Please contact support for further assistance.
+    prescription:
+      dashboard: My Prescriptions
+      show: Prescription    
+      new: New Prescription
+      medication: Medication
+      dosage: Dosage
+      vaild_until: Valid Until
+      notes: Notes
+      list: All Prescriptions
+      create: Create
+      issued_at: Issued At
+      actions: Actions
+      id: Prescription ID
+      request_investigate: Please investigate and take appropriate action
+      patient_title: Patient Name
+      doctor_title: Doctor Name
+  payment:
+    in_process: In Process
+    success: Payment Successful
+    failed: Payment Failed
+    flaky:
+      error: Failed to charge %{amount}
+    error:
+      message: "Payment attempt %{attempt} failed with %{provider_class}: %{message}"
+  

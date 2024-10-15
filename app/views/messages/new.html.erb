@@ -1,0 +1,37 @@
+<h1><%= t('messages.new.title') %></h1>
+<%= form_with(model: @message, url: messages_path, method: :post, local: true) do |form| %>
+  <% unless params[:original_message_id] %>
+    <div class="form-group">
+      <%= form.label :outbox_id, t('user.role.sender') %>
+      
+      <%= form.select :outbox_id, options_for_select(@users.map { |user| [user.sender_name, user.outbox.id] }, selected: @message.outbox_id), { prompt: 'Select Sender' }, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :inbox_id, t('user.role.receiver') %>
+      <%= form.select :inbox_id, options_for_select(@users.map { |user| [user.recipient_name, user.inbox.id] }, selected: @message.inbox_id), { prompt: 'Select Recipient' }, class: 'form-control' %>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :body, t('messages.new.body') %>
+    <%= form.text_area :body, 
+                        class: "form-control", 
+                        rows: 5, 
+                        placeholder: t('messages.new.placeholder'), 
+                        maxlength: 500 %>
+    <small class="form-text text-muted">
+      <%= t('messages.new.max_allowed_chars') %>
+    </small>
+  </div>
+  <% if params[:original_message_id].present? %>
+    <%= form.hidden_field :reply_to_id, value: params[:original_message_id] %>
+  <% end %>
+  <div class="form-group">
+    <%= form.submit t('messages.new.send'), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= link_to t('messages.new.back'), root_path, class: "btn btn-secondary mt-3" %>
+
+
+
+

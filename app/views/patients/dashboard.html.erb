@@ -1,0 +1,38 @@
+<div class="mb-3">
+  <% if User.current %>
+    <%= link_to t('messages.index.patient_inbox'), inbox_path(id: User.current), class: 'btn btn-info' %>
+  <% end %>
+</div>
+<h2><%= t('user.prescription.dashboard')%></h2>
+
+<% if @prescriptions.empty? %>
+  <%= t('messages.no_records') %>
+<% else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= t('user.role.doctor')%></th>
+        <th><%= t('user.prescription.medication') %></th>
+        <th><%= t('user.prescription.dosage') %></th>
+        <th><%= t('user.prescription.issued_at') %></th>
+        <th><%= t('user.prescription.valid_until') %></th>
+        <th><%= t('user.prescription.actions') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @prescriptions.each do |prescription| %>
+        <tr>
+          <td><%= prescription.doctor.full_name %></td>
+          <td><%= prescription.medication %></td>
+          <td><%= prescription.dosage %></td>
+          <td><%= format_date(prescription.issued_at) %></td>
+          <td><%= format_date(prescription.valid_until) %></td>
+          <td>
+            <%= link_to t('messages.index.view'), prescription_path(id: prescription.id), class: "btn btn-info" %>
+            <%= render_prescription_action(prescription) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

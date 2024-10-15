@@ -1,0 +1,8 @@
+<h1><%= t('messages.index.view')%></h1>
+
+<p><strong><%= t('messages.index.from')%>:</strong> <%= @message.outbox&.user&.full_name %></p>
+<p><strong><%= t('messages.index.to')%>:</strong> <%= @message.inbox.user.full_name %></p>
+<p><strong><%= t('messages.index.body')%>:</strong> <%= @message.body %></p>
+<p><strong><%= t('messages.index.sent_at')%>:</strong> <%= @message.created_at %></p>
+
+<%= link_to t('messages.show.back'), inbox_path(id: @message.inbox.user_id, last_message_id: @message.id + 1)%>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t('application.title') %></title>
+    <meta name="turbo-prefetch" content="false">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-light">
+    <div class="container">
+      <%= render 'navigation/header' %>
+      <%= render 'layouts/flash_messages' %>
+      
+      <main role="main">
+        <%= yield %>
+      </main>
+    </div>
+  </body>
+</html>

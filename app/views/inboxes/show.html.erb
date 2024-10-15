@@ -1,0 +1,50 @@
+<% if @inbox.user.is_doctor? %>
+  <%= link_to t('user.prescription.new'), new_prescription_path, class: 'btn btn-info' %>
+  <%= link_to t('user.prescription.list'), prescriptions_path, class: 'btn btn-info' %>
+  <p/>
+<% end %>
+  <div><%= @inbox.user.recipient_name %> Inbox</div>
+  <br/>
+<% if @inbox.user.is_doctor? %>
+  <div class="alert alert-info">
+    <%= t('messages.inbox_unread_count', count: @inbox.unread_messages_count) %>
+  </div>
+<% end %>
+<% if @messages.empty? %>
+  <%= t('messages.no_records') %>
+<% else %>
+  <% cache @messages do %>
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col"><%= t('messages.index.from')%></th>
+          <th scope="col"><%= t('messages.index.body')%></th>
+          <th scope="col"><%= t('messages.index.sent_at')%></th>
+          <th scope="col"><%= t('messages.index.read')%></th>
+          <th scope="col"><%= t('messages.index.actions')%></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @messages.each_with_index do |message, index| %>
+          <tr>
+            <td><%= message.outbox&.user&.sender_name %></td>
+            <td><%= truncate(message.body, length: 50) %></td>
+            <td><%= message.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+            <td><%= message.read ? t('messages.read_yes') : t('messages.read_no') %></td>
+            <td>
+              <%= link_to t('messages.index.view'), message_path(message), class: message.read ? 'btn btn-light btn-sm' : 'btn btn-info btn-sm' %>
+              <% if @inbox.user.is_patient? %>
+                <% reply_status = message.replied? ? t('messages.show.replied') : t('messages.show.reply')%>
+                <%= link_to reply_status, new_message_path(original_message_id: message.id), class: 'btn btn-warning btn-sm' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
+
+<div class="pagination">
+  <%= paginate @messages %>
+</div>
