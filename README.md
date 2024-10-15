@@ -1,13 +1,11 @@
-Please find attached a repo containing a Rails application. The application currently just displays a message which a patient has received after applying for a treatment.
+This Rails application effectively communicates the status message to the patient after they have submitted a treatment application.
 
-The application comes packaged with the following models:
-
+It comes packaged with the following models:
 * User
 * Message
 * Inbox
 * Outbox
 * Payment
-
 When a user sends a message, it goes into their outbox and into the inbox of the recipient.
 
 ### Get up & running
@@ -20,7 +18,7 @@ Running `rails db:seed` will:
 
 Run the server using `bin/dev`
 
-### Task 1
+### UseCase: 1
 
 Patients should have the ability to send a message to their doctor through the app.
 
@@ -46,7 +44,7 @@ Please write tests for the following:
 1. That a message has an unread status after creation
 2. That a message is sent to the correct inbox and outbox after creation
  
-### Task 2
+### UseCase 2
 
 Doctors have requested the ability to quickly see how many unread messages they have in their inbox. Add a new column to Inbox that reflects this number. Update this number when a message has been sent to the doctor.
 
@@ -58,7 +56,7 @@ Please write tests for the following:
 2. That the number of unread messages is incremented when a doctor is sent a message
 
 
-### Task 3
+### UseCase 3
 
 Patients regularly lose their prescription notes. An admin can re-issue a prescription note on behalf of a doctor. Update the application as follows:
 
@@ -130,7 +128,7 @@ Note: ***The seed file and rake task for inserting messages are particularly imp
 
 ## Below are accomplished as part of code-challenge:
 
-### Task 1: 
+### UseCase 1: 
 
 ### Messaging Enhancements
 - Implemented Messaging Logic: Patients can now send messages to their doctors. If the original message is older than a week, the message is routed to an Admin. 
@@ -141,14 +139,14 @@ The sender’s outbox and the recipient’s inbox are updated accordingly.
     - Verified that messages are marked as unread upon creation.
     - Ensured correct updating of outbox and inbox after message creation.
 
-### Task 2: Unread Messages Count
+### UseCase 2: Unread Messages Count
 - Added Unread Messages Counter: A new column in the Inbox model tracks the number of unread messages for doctors. This counter is updated when messages are sent or read.
   #### Testing:
 
     - Confirmed that the unread messages count decrements when a message is read.
     - Verified that the count increments when a new message is received.
 
-### Task 3: Prescription Request and Payment Integration:
+### UseCase 3: Prescription Request and Payment Integration:
 
 #### Enhanced Functionality: 
 - Patients can now request a new prescription via a button. 
